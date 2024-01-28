@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signUpRoute } from "../utils/Route"
 import { useNavigate, Link } from "react-router-dom"
+import loading from "../assets/loading.gif"
 
 const CreateAccount = () => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const CreateAccount = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [Cpassword, setCpassword] = useState("");
+    const [isloading, setIsLoading] = useState(false)
 
     async function handleSignup(e: any) {
         e.preventDefault();
@@ -25,6 +27,7 @@ const CreateAccount = () => {
         } else if (password.trim() !== Cpassword.trim()) {
             toast.error("Password does not match");
         } else {
+            setIsLoading(true);
             const response = await fetch(signUpRoute, {
                 method: 'POST',
                 headers: {
@@ -32,8 +35,8 @@ const CreateAccount = () => {
                 },
                 body: JSON.stringify({ name, rollNo, email, password }),
             });
-
             const responseData = await response.json();
+            setIsLoading(false);
             if (responseData.status) {
                 localStorage.setItem("user", JSON.stringify(responseData.msg));
                 navigate("/");
@@ -83,7 +86,7 @@ const CreateAccount = () => {
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" className="btn btn-primary btn-lg"
-                                    >Sign up</button>
+                                    >Sign up {isloading ? <img id='loading' src={loading} alt="load" /> : <></>} </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <Link to="/login    "
                                         className="link-danger">Sign in</Link></p>
                                 </div>

@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginRoute } from "../utils/Route"
 import { useNavigate, Link } from "react-router-dom";
+import loading from "../assets/loading.gif"
 
 interface LoginProps {
     setIsLoggedIn: Function
@@ -13,6 +14,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
 
     const [rollNo, setRollNo] = useState("");
     const [password, setPassword] = useState("");
+    const [isloading, setIsLoading] = useState(false)
 
     async function handleLogin(e: any) {
         e.preventDefault();
@@ -23,6 +25,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
             toast.error("Password must be at least 8 characters")
         }
         else {
+            setIsLoading(true);
             const response = await fetch(loginRoute, {
                 method: 'POST',
                 headers: {
@@ -30,14 +33,15 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
                 },
                 body: JSON.stringify({ rollNo, password }),
             })
+            setIsLoading(false)
             const responseData = await response.json();
             if (responseData.status) {
                 localStorage.setItem("user", JSON.stringify(responseData.msg))
-                setIsLoggedIn(true);
                 navigate("/");
             }
             else {
                 toast.error(responseData.msg)
+                console.log()
             }
         }
     }
@@ -67,7 +71,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" className="btn btn-primary btn-lg"
-                                    >Login</button>
+                                    >Login {isloading ? <img id='loading' src={loading} alt="load" /> : <></>} </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup"
                                         className="link-danger">Register</Link></p>
                                 </div>
