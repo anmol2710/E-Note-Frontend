@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signUpRoute } from "../utils/Route"
 import { useNavigate, Link } from "react-router-dom"
-import loading from "../assets/loading.gif"
 
 const CreateAccount = () => {
     const navigate = useNavigate();
@@ -86,7 +85,7 @@ const CreateAccount = () => {
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" className="btn btn-primary btn-lg"
-                                    >Sign up {isloading ? <img id='loading' src={loading} alt="load" /> : <></>} </button>
+                                    >Sign up {isloading ? <i className="fa-solid fa-spinner fa-spin-pulse" ></i> : <></>} </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <Link to="/login    "
                                         className="link-danger">Sign in</Link></p>
                                 </div>

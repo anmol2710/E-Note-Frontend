@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginRoute } from "../utils/Route"
 import { useNavigate, Link } from "react-router-dom";
-import loading from "../assets/loading.gif"
 
 interface LoginProps {
     setIsLoggedIn: Function
@@ -49,6 +48,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
     return (
         <>
             <section >
+                <i className="fa-solid fa-spinner fa-spin"></i>
                 <div className="container-fluid h-custom">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-md-9 col-lg-6 col-xl-5">
@@ -71,7 +71,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" className="btn btn-primary btn-lg"
-                                    >Login {isloading ? <img id='loading' src={loading} alt="load" /> : <></>} </button>
+                                    >Login {isloading ? <i className="fa-solid fa-spinner fa-spin-pulse" ></i> : <></>} </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup"
                                         className="link-danger">Register</Link></p>
                                 </div>
