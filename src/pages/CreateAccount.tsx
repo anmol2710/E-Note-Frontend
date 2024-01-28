@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signUpRoute } from "../utils/Route"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 const CreateAccount = () => {
     const navigate = useNavigate();
@@ -12,77 +12,86 @@ const CreateAccount = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [Cpassword, setCpassword] = useState("");
-    const [branch, setBranch] = useState("");
 
     async function handleSignup(e: any) {
         e.preventDefault();
 
-        try {
-            if (name.length < 3) {
-                toast.error("Name is invalid");
-            } else if (rollNo.length !== 11) {
-                toast.error("Roll No is invalid");
-            } else if (password.length < 8) {
-                toast.error("Password must be at least 8 characters");
-            } else if (password.trim() !== Cpassword.trim()) {
-                toast.error("Password does not match");
+        if (name.length < 3) {
+            toast.error("Name is invalid");
+        } else if (rollNo.length !== 11) {
+            toast.error("Roll No is invalid");
+        } else if (password.length < 8) {
+            toast.error("Password must be at least 8 characters");
+        } else if (password.trim() !== Cpassword.trim()) {
+            toast.error("Password does not match");
+        } else {
+            const response = await fetch(signUpRoute, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, rollNo, email, password }),
+            });
+
+            const responseData = await response.json();
+            if (responseData.status) {
+                localStorage.setItem("user", JSON.stringify(responseData.msg));
+                navigate("/");
             } else {
-                setBranch(rollNo.charAt(5) + rollNo.charAt(6));
-                const response = await fetch(signUpRoute, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name, rollNo, email, password, branch }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                const responseData = await response.json();
-                if (responseData.status) {
-                    localStorage.setItem("user", JSON.stringify(responseData.msg));
-                    navigate("/");
-                } else {
-                    toast.error(responseData.msg);
-                }
+                toast.error(responseData.msg);
             }
-        } catch (error) {
-            console.error('Fetch error:', error);
-            toast.error('An unexpected error occurred. Please try again later.');
         }
     }
 
-
     return (
         <>
-            <div className="container">
-                <h1>Signup</h1>
-                <form onSubmit={handleSignup}>
-                    <div className="mb-3">
-                        <label htmlFor="name" className="form-label">Name</label>
-                        <input type="text" className="form-control" id="name" name='name' onChange={(e) => { setName(e.target.value) }} />
+            <section className="vh-80">
+                <div className="container-fluid h-custom">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-md-9 col-lg-6 col-xl-5">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                                className="img-fluid" alt="__" />
+                        </div>
+                        <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                            <form onSubmit={handleSignup}>
+                                <div className="form-outline mb-4">
+                                    <label className="form-label" htmlFor="name">Name</label>
+                                    <input type="text" id="name" name='name' className="form-control form-control-lg"
+                                        placeholder="Enter name" onChange={e => { setName(e.target.value) }} />
+                                </div>
+                                <div className="form-outline mb-4">
+                                    <label className="form-label" htmlFor="rollNo">Roll No</label>
+                                    <input type="text" name='rollNo' id="rollNo" className="form-control form-control-lg"
+                                        placeholder="Enter Roll No" onChange={e => { setRollNo(e.target.value) }} />
+                                </div>
+                                <div className="form-outline mb-4">
+                                    <label className="form-label" htmlFor="form3Example3">Email address</label>
+                                    <input type="email" id="form3Example3" className="form-control form-control-lg"
+                                        placeholder="Enter  email address" onChange={e => { setEmail(e.target.value) }} />
+                                </div>
+                                <div className="form-outline mb-4">
+                                    <label className="form-label" htmlFor="password">Password</label>
+                                    <input type="password" id="password" name='password' className="form-control form-control-lg"
+                                        placeholder="Enter password" onChange={e => { setPassword(e.target.value) }} />
+                                </div>
+
+                                <div className="form-outline mb-3">
+                                    <label className="form-label" htmlFor="Cpassword">Confirm Password</label>
+                                    <input type="password" id="Cpassword" name='Cpassword' className="form-control form-control-lg"
+                                        placeholder="Enter confirm password" onChange={e => { setCpassword(e.target.value) }} />
+                                </div>
+
+                                <div className="text-center text-lg-start mt-4 pt-2">
+                                    <button type="submit" className="btn btn-primary btn-lg"
+                                    >Sign up</button>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <Link to="/login    "
+                                        className="link-danger">Sign in</Link></p>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="rollNo" className="form-label">Roll No</label>
-                        <input type="text" className="form-control" id="rollNo" name='rollNo' onChange={(e) => { setRollNo(e.target.value) }} />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email address</label>
-                        <input type="email" className="form-control" name='email' id="email" onChange={(e) => { setEmail(e.target.value) }} />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="password" name='password' onChange={(e) => { setPassword(e.target.value) }} />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                        <input type="password" className="form-control" id="cpassword" name='cpassword' onChange={(e) => { setCpassword(e.target.value) }} />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </form>
-            </div>
+                </div>
+            </section>
             <ToastContainer />
         </>
     )
