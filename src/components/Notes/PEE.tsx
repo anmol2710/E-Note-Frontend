@@ -8,7 +8,10 @@ const PEE = () => {
                 <div className="card" >
                     <div className="card-body">
                         <h3 className="card-title">Principles of Electrical Engineering (PEE)</h3>
-                        <Link to="/notes/PEE" className="btn btn-primary">Notes</Link>
+                        <div className="container div">
+                            <Link to="/notes/PEE" className="btn btn-primary">Notes</Link>
+                            <Link to="/Lab-notes/PEE" className="btn btn-primary">Lab Work</Link>
+                        </div>
                     </div>
                 </div>
             </>

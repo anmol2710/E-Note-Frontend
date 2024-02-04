@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { app } from '../Firebase';
 import { collection, getDocs, getFirestore, query, DocumentData } from 'firebase/firestore';
@@ -6,12 +6,13 @@ import loding from "../assets/page-loading.gif"
 
 const db = getFirestore(app);
 
-const Notes = () => {
+const LabNotes = () => {
     const [sub, setSub] = useState<string>('');
     const [notes, setNotes] = useState<DocumentData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const { pageId } = useParams();
+
 
     useEffect(() => {
         if (pageId) {
@@ -25,11 +26,9 @@ const Notes = () => {
         }
     }, [sub]);
 
-    useEffect(() => {
-    }, [notes]);
 
     async function fetchNotes() {
-        const docRef = collection(db, sub);
+        const docRef = collection(db, `Lab-${sub}`);
         const q = query(docRef);
         try {
             const docs = await getDocs(q);
@@ -63,7 +62,7 @@ const Notes = () => {
                     </>}
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Notes;
+export default LabNotes

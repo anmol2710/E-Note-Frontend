@@ -88,3 +88,7 @@ section{
   width: 50px;
   object-fit: contain;
 }
+.div{
+  display: flex;
+  justify-content: space-evenly;
+}

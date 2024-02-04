@@ -8,7 +8,10 @@ const CP = () => {
                 <div className="card" >
                     <div className="card-body">
                         <h3 className="card-title">Computer Programming	(CP)</h3>
-                        <Link to="/notes/CP" className="btn btn-primary">Notes</Link>
+                        <div className="container div">
+                            <Link to="/notes/CP" className="btn btn-primary">Notes</Link>
+                            <Link to="/Lab-notes/CP" className="btn btn-primary">Lab Work</Link>
+                        </div>
                     </div>
                 </div>
             </>
