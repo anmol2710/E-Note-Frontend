@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
 interface NavProps {
@@ -9,6 +9,7 @@ interface NavProps {
 const Navbar: React.FC<NavProps> = ({ isLoggedin, setIsLoggedIn }) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const [isOpen, SetIsOpen] = useState(false)
 
     useEffect(() => {
         const user = localStorage.getItem("user");
@@ -25,37 +26,33 @@ const Navbar: React.FC<NavProps> = ({ isLoggedin, setIsLoggedIn }) => {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">E-Notes</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} aria-current="page" to="/">Home</Link>
-                            </li>
-                            {
-                                !isLoggedin ?
-                                    <>
-                                        <li className="nav-item">
-                                            <Link className={`nav-link ${location.pathname === '/signup' ? 'active' : ''}`} to="/signup">Create Account</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Sign in</Link>
-                                        </li>
-                                    </> :
-                                    <>
-                                        <li className="nav-item">
-                                            <button type="button" onClick={handleLogout} className="btn btn-danger">Logout</button>
-                                        </li>
-                                    </>
-                            }
-                        </ul>
-                    </div>
+            <nav className="w-full h-16 m-0 bg-slate-800 flex justify-between px-4 items-center">
+                <div className="text-2xl font-bold text-white"><Link to="/">E-Notes</Link></div>
+                <div className="flex gap-2 flex-wrap">
+                    {
+                        !isLoggedin ? <>
+                            <div className="hidden md:block p-2 text-white font-bold rounded-md"><Link to="/">Home</Link></div>
+                            <div className="hidden md:block p-2 text-white font-bold rounded-md"><Link to="/signup">Create Account</Link></div>
+                            <div className="hidden md:block p-2 text-white font-bold rounded-md"><Link to="/login">Sign In</Link></div>
+
+                        </> : <>
+
+                            <div className="hidden md:block p-2  text-white font-bold rounded-md"><Link to="/">Home</Link></div>
+                            <div className="hidden md:block p-2 bg-red-700 text-white font-bold rounded-md"><button onClick={handleLogout}>Logout</button></div>
+                        </>
+                    }
+
                 </div>
+                <div className=" text-4xl md:hidden"><button onClick={() => { SetIsOpen(!isOpen) }}>&#8801;</button></div>
             </nav>
+            {
+                isOpen ?
+                    <div className='flex flex-col items-center bg-indigo-500 gap-2 p-1 transition-a'>
+                        <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-20 text-center"><Link to="/">Home</Link></div>
+                        <div className="block md:hidden p-2 bg-red-700 text-white font-bold rounded-md w-20 text-center"><button onClick={handleLogout}>Logout</button></div>
+
+                    </div> : <></>
+            }
         </>
     )
 }

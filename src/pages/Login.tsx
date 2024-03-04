@@ -47,7 +47,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
 
     return (
         <>
-            <section >
+            <section className='h-full w-full' >
                 <i className="fa-solid fa-spinner fa-spin"></i>
                 <div className="container-fluid h-custom">
                     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -58,22 +58,22 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
                         <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                             <form onSubmit={handleLogin}>
                                 <div className="form-outline mb-4">
-                                    <label className="form-label" htmlFor="form3Example3">Roll No</label>
-                                    <input type="text" id="form3Example3" className="form-control form-control-lg"
+                                    <label className="form-label text-white" htmlFor="form3Example3">Roll No</label>
+                                    <input type="text" id="form3Example3" className="form-control form-control-lg "
                                         placeholder="Enter Roll no" onChange={e => { setRollNo(e.target.value) }} />
                                 </div>
 
                                 <div className="form-outline mb-3">
-                                    <label className="form-label" htmlFor="form3Example4">Password</label>
+                                    <label className="form-label text-white" htmlFor="form3Example4">Password</label>
                                     <input type="password" id="form3Example4" className="form-control form-control-lg"
                                         placeholder="Enter password" onChange={e => { setPassword(e.target.value) }} />
                                 </div>
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
-                                    <button type="submit" className="btn btn-primary btn-lg"
-                                    >Login {isloading ? <i className="fa-solid fa-spinner fa-spin-pulse" ></i> : <></>} </button>
-                                    <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup"
-                                        className="link-danger">Register</Link></p>
+                                    <button type="submit" className="btn btn-primary btn-lg bg-indigo-600 text-white">
+                                        Login {isloading ? <i className="fa-solid fa-spinner fa-spin-pulse" ></i> : <></>} </button>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0 text-white">Don't have an account? <Link to="/signup"
+                                        className="text-red-500">Register</Link></p>
                                 </div>
                             </form>
                         </div>

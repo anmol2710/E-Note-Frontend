@@ -47,7 +47,7 @@ const CreateAccount = () => {
 
     return (
         <>
-            <section className="vh-80">
+            <section className="vh-80 mt-4">
                 <div className="container-fluid h-custom">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-md-9 col-lg-6 col-xl-5">
@@ -57,37 +57,37 @@ const CreateAccount = () => {
                         <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                             <form onSubmit={handleSignup}>
                                 <div className="form-outline mb-4">
-                                    <label className="form-label" htmlFor="name">Name</label>
+                                    <label className="form-label text-white" htmlFor="name">Name</label>
                                     <input type="text" id="name" name='name' className="form-control form-control-lg"
                                         placeholder="Enter name" onChange={e => { setName(e.target.value) }} />
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <label className="form-label" htmlFor="rollNo">Roll No</label>
+                                    <label className="form-label text-white" htmlFor="rollNo">Roll No</label>
                                     <input type="text" name='rollNo' id="rollNo" className="form-control form-control-lg"
                                         placeholder="Enter Roll No" onChange={e => { setRollNo(e.target.value) }} />
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <label className="form-label" htmlFor="form3Example3">Email address</label>
+                                    <label className="form-label text-white" htmlFor="form3Example3">Email address</label>
                                     <input type="email" id="form3Example3" className="form-control form-control-lg"
                                         placeholder="Enter  email address" onChange={e => { setEmail(e.target.value) }} />
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <label className="form-label" htmlFor="password">Password</label>
+                                    <label className="form-label text-white" htmlFor="password">Password</label>
                                     <input type="password" id="password" name='password' className="form-control form-control-lg"
                                         placeholder="Enter password" onChange={e => { setPassword(e.target.value) }} />
                                 </div>
 
                                 <div className="form-outline mb-3">
-                                    <label className="form-label" htmlFor="Cpassword">Confirm Password</label>
+                                    <label className="form-label text-white" htmlFor="Cpassword">Confirm Password</label>
                                     <input type="password" id="Cpassword" name='Cpassword' className="form-control form-control-lg"
                                         placeholder="Enter confirm password" onChange={e => { setCpassword(e.target.value) }} />
                                 </div>
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
-                                    <button type="submit" className="btn btn-primary btn-lg"
+                                    <button type="submit" className="btn btn-primary btn-lg bg-indigo-600"
                                     >Sign up {isloading ? <i className="fa-solid fa-spinner fa-spin-pulse" ></i> : <></>} </button>
-                                    <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <Link to="/login    "
-                                        className="link-danger">Sign in</Link></p>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0 text-white">Already have an account? <Link to="/login    "
+                                        className="text-red-500">Sign in</Link></p>
                                 </div>
                             </form>
                         </div>

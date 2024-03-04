@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Maths = () => {
     return (
         <>
-            <div className="card" >
+            <div className="card bg-slate-700 text-white" >
                 <div className="card-body">
-                    <h3 className="card-title">Mathematics-II</h3>
+                    <h3 className="card-title text-2xl">Mathematics-II</h3>
                     <div className="container div">
                         <Link to="/Notes/Maths2" className="btn btn-primary">Notes</Link>
                     </div>

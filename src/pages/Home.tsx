@@ -6,11 +6,6 @@ import EM from '../components/Notes/EM';
 import Physics from '../components/Notes/Physics';
 import EDC from '../components/Notes/EDC';
 import CP from '../components/Notes/CP';
-// import { app } from "../Firebase"
-// import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
-
-
-// const db = getFirestore(app);
 
 interface User {
     _id: string;
@@ -36,18 +31,10 @@ const Home = () => {
         }
     }, [navigate]);
 
-    // async function getdata() {
-    //     const docRef = collection(db, "EE");
-    //     const q = query(docRef)
-    //     const docs = await getDocs(q);
-    //     docs.forEach(doc => {
-    //         console.log(doc.data())
-    //     })
-    // }
-
     return (
         <>
-            <h1>Notes of All subjects of {user.branch} </h1>
+        <div className='w-screen min-h-screen h-full  bg-slate-600 p-4'>
+            <h1 className='text-white text-3xl'>Notes of All subjects of {user.branch} </h1>
             <div className="note-container container">
                 <div className="row">
                     <PEE />
@@ -60,6 +47,7 @@ const Home = () => {
                     <CP />
                 </div>
             </div>
+        </div>
         </>
     );
 };

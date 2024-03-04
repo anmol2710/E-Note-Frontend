@@ -47,9 +47,9 @@ const Notes = () => {
                     notes.length !== 0 ?
                         notes.map(note => {
                             return (
-                                <div className="card">
+                                <div className="card bg-slate-700 text-white">
                                     <div className="card-body">
-                                        <h3 className="card-title">{note.Name}</h3>
+                                        <h3 className="card-title text-2xl">{note.Name}</h3>
                                         <Link to={note.pdfUrl} className="btn btn-primary">Notes</Link>
                                     </div>
                                 </div>)
