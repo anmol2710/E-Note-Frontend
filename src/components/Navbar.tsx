@@ -50,8 +50,8 @@ const Navbar: React.FC<NavProps> = ({ isLoggedin, setIsLoggedIn }) => {
                         {
                             !isLoggedin?<>
                             <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Home</Link></div>
-                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Create Account</Link></div>
-                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Sign In</Link></div>
+                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/signup">Create Account</Link></div>
+                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/login">Sign In</Link></div>
                             </>:<>
                         
                             <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Home</Link></div>
