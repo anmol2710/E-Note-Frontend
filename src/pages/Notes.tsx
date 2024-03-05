@@ -55,7 +55,7 @@ const Notes = () => {
                                 </div>)
                         })
                         : <>
-                            <h1>Notes will be uploaded soon</h1>
+                            <h1 className='text-3xl text-white'>Notes will be uploaded soon</h1>
                         </>
                     :
                     <>
