@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 interface NavProps {
     isLoggedin: boolean,
@@ -7,7 +7,6 @@ interface NavProps {
 }
 
 const Navbar: React.FC<NavProps> = ({ isLoggedin, setIsLoggedIn }) => {
-    const location = useLocation();
     const navigate = useNavigate();
     const [isOpen, SetIsOpen] = useState(false)
 
@@ -43,14 +42,22 @@ const Navbar: React.FC<NavProps> = ({ isLoggedin, setIsLoggedIn }) => {
                     }
 
                 </div>
-                <div className=" text-4xl md:hidden"><button onClick={() => { SetIsOpen(!isOpen) }}>&#8801;</button></div>
+                <div className=" text-4xl md:hidden text-white"><button onClick={() => { SetIsOpen(!isOpen) }}>&#8801;</button></div>
             </nav>
             {
                 isOpen ?
-                    <div className='flex flex-col items-center bg-indigo-500 gap-2 p-1 transition-a'>
-                        <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-20 text-center"><Link to="/">Home</Link></div>
-                        <div className="block md:hidden p-2 bg-red-700 text-white font-bold rounded-md w-20 text-center"><button onClick={handleLogout}>Logout</button></div>
-
+                    <div className='flex flex-col items-center bg-slate-800 gap-2 p-1 transition-a'>
+                        {
+                            !isLoggedin?<>
+                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Home</Link></div>
+                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Create Account</Link></div>
+                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Sign In</Link></div>
+                            </>:<>
+                        
+                            <div className="block md:hidden p-2 bg-indigo-800 text-white font-bold rounded-md w-40 text-center"><Link to="/">Home</Link></div>
+                            <div className="block md:hidden p-2 bg-red-700 text-white font-bold rounded-md w-40 text-center"><button onClick={handleLogout}>Logout</button></div>
+                            </>
+                        }
                     </div> : <></>
             }
         </>

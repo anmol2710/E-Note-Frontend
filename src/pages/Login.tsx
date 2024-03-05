@@ -35,6 +35,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
             setIsLoading(false)
             const responseData = await response.json();
             if (responseData.status) {
+                setIsLoggedIn(true)
                 localStorage.setItem("user", JSON.stringify(responseData.msg))
                 navigate("/");
             }
