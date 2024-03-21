@@ -33,7 +33,7 @@ const Home = () => {
 
     return (
         <>
-        <div className='w-screen min-h-screen h-full  bg-slate-600 p-4'>
+        <div className='w-screen min-h-screen h-full  bg-gradient-to-r from-blue-800 to-indigo-900 p-4'>
             <h1 className='text-white text-3xl'>Notes of All subjects of {user.branch} </h1>
             <div className="note-container container">
                 <div className="row">

@@ -48,7 +48,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn }) => {
 
     return (
         <>
-            <section className='h-full w-full' >
+            <section className='h-full w-full bg-gradient-to-r from-blue-800 to-indigo-900' >
                 <i className="fa-solid fa-spinner fa-spin"></i>
                 <div className="container-fluid h-custom">
                     <div className="row d-flex justify-content-center align-items-center h-100">
