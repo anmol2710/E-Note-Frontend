@@ -1,0 +1,32 @@
+{
+    "notes": [
+        {
+            "name": "Principles of Electrical Engineering (PEE)",
+            "notes": "/PEE",
+            "Labnotes": "/Lab-notes/PEE"
+        },
+        {
+            "name": "Mathematics-II",
+            "notes": "/Maths2"
+        },
+        {
+            "name": "Electrical Measurements (EM)",
+            "notes": "/EM",
+            "Labnotes": "/Lab-notes/EM"
+        },
+        {
+            "name": "Introduction to Electromagnetic Theory (EMT)",
+            "notes": "/EMT"
+        },
+        {
+            "name": "Electronics Devices and Circuits (EDC)",
+            "notes": "/EDC",
+            "Labnotes": "/Lab-notes/EDC"
+        },
+        {
+            "name": "Computer Programming (CP)",
+            "notes": "/CP",
+            "Labnotes": "/Lab-notes/CP"
+        }
+    ]
+}
