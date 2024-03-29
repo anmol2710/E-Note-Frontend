@@ -12,7 +12,7 @@ const NotesHome = () => {
     const storedUser = localStorage.getItem('user');
 
     if (!storedUser) {
-      navigate('/login');
+      navigate('/');
     }
   }, [navigate])
 
