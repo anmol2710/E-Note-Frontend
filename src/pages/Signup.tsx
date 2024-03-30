@@ -17,6 +17,7 @@ const Signup = () => {
     const [isLoading , setIsLoading] = useState(false);
 
     async function handleSignup(e:any) {
+        e.preventDefault();
         if(name.length < 2){
             toast.error("Please enter a valid name");
             return;
@@ -33,7 +34,7 @@ const Signup = () => {
             toast.error("Password does not match")
             return;
         }
-
+        setIsLoading(true);
         const response = await fetch(SignUpRoute ,{
             method:"POST",
             headers:{
